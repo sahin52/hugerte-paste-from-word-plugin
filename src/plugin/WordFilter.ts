@@ -1,11 +1,11 @@
 /**
- * Copyright (c) Tiny Technologies, Inc. and Pangaea Information Technologies, Ltd.
+ * Copyright (c) Tiny Technologies, Inc., Pangaea Information Technologies, Ltd. and skasap
  * All rights reserved.
  * Licensed under the LGPL or a commercial license.
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  */
-import tinymce, { AstNode, Editor } from "tinymce";
+import hugerte, { AstNode, Editor } from "hugerte";
 import { filter } from "./Utils";
 
 export interface PreProcessEvent {
@@ -54,7 +54,7 @@ const isNumericList = (text: string): boolean => {
 
   text = text.replace(/^[\u00a0 ]+/, "");
 
-  tinymce.util.Tools.each(patterns, (pattern) => {
+  hugerte.util.Tools.each(patterns, (pattern) => {
     if (pattern.test(text)) {
       found = true;
       return false;
@@ -70,7 +70,7 @@ const isBulletList = (text: string): boolean =>
 /**
  * Converts fake bullet and numbered lists to real semantic OL/UL.
  *
- * @param {tinymce.html.Node} node Root node to convert children of.
+ * @param {hugerte.html.Node} node Root node to convert children of.
  */
 const convertFakeListsToProperLists = (node: WordAstNode) => {
   let currentListNode: WordAstNode,
@@ -148,7 +148,7 @@ const convertFakeListsToProperLists = (node: WordAstNode) => {
 
     if (!currentListNode || currentListNode.name !== listName) {
       prevListNode = prevListNode || currentListNode;
-      currentListNode = new tinymce.html.Node(listName, 1);
+      currentListNode = new hugerte.html.Node(listName, 1);
 
       if (start > 1) {
         currentListNode.attr("start", "" + start);
@@ -246,9 +246,9 @@ const filterStyles = (
   styleValue: string,
 ): string | null => {
   const outputStyles: Record<string, string> = {};
-  const styles = tinymce.DOM.parseStyle(styleValue);
+  const styles = hugerte.DOM.parseStyle(styleValue);
 
-  tinymce.util.Tools.each(styles, (value, name) => {
+  hugerte.util.Tools.each(styles, (value, name) => {
     // Convert various MS styles to W3C styles
     switch (name) {
       case "mso-list":
@@ -331,17 +331,17 @@ const filterStyles = (
   // Convert bold style to "b" element
   if (/(bold)/i.test(outputStyles["font-weight"])) {
     delete outputStyles["font-weight"];
-    node.wrap(new tinymce.html.Node("b", 1));
+    node.wrap(new hugerte.html.Node("b", 1));
   }
 
   // Convert italic style to "i" element
   if (/(italic)/i.test(outputStyles["font-style"])) {
     delete outputStyles["font-style"];
-    node.wrap(new tinymce.html.Node("i", 1));
+    node.wrap(new hugerte.html.Node("i", 1));
   }
 
   // Serialize the styles and see if there is something left to keep
-  const outputStyle = tinymce.DOM.serializeStyle(outputStyles, node.name);
+  const outputStyle = hugerte.DOM.serializeStyle(outputStyles, node.name);
   if (outputStyle) {
     return outputStyle;
   }
@@ -393,14 +393,14 @@ const preProcess = (editor: Editor, content: string): string => {
   );
 
   // Setup strict schema
-  const schema = tinymce.html.Schema({
+  const schema = hugerte.html.Schema({
     valid_elements: validElements,
     valid_children: "-li[p]",
   });
 
   // Add style/class attribute to all element rules since the user might have removed them from
   // paste_word_valid_elements config option and we need to check them for properties
-  tinymce.util.Tools.each(schema.elements, (rule) => {
+  hugerte.util.Tools.each(schema.elements, (rule) => {
     /* eslint dot-notation:0*/
     if (!rule.attributes.class) {
       rule.attributes.class = {};
@@ -414,7 +414,7 @@ const preProcess = (editor: Editor, content: string): string => {
   });
 
   // Parse HTML into DOM structure
-  const domParser = tinymce.html.DomParser({}, schema);
+  const domParser = hugerte.html.DomParser({}, schema);
 
   // Filter styles to remove "mso" specific styles and convert some of them
   domParser.addAttributeFilter("style", (nodes) => {
@@ -509,7 +509,7 @@ const preProcess = (editor: Editor, content: string): string => {
   }
 
   // Serialize DOM back to HTML
-  content = tinymce.html.Serializer({}, schema).serialize(rootNode);
+  content = hugerte.html.Serializer({}, schema).serialize(rootNode);
 
   // Remove empty spans
   content = filter(content, [/<span[^>]*>\s*<\/span>/gi]);

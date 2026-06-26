@@ -20,16 +20,16 @@ module.exports = {
     globalObject: "this",
     clean: true,
     library: {
-      name: "tinymce-paste-from-word-lib",
+      name: "hugerte-paste-from-word-lib",
       type: "umd",
     },
   },
   externals: {
-    tinymce: {
-      commonjs: "tinymce",
-      commonjs2: "tinymce",
-      amd: "tinymce",
-      root: "tinymce",
+    hugerte: {
+      commonjs: "hugerte",
+      commonjs2: "hugerte",
+      amd: "hugerte",
+      root: "hugerte",
     },
   },
 };
