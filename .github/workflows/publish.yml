@@ -46,7 +46,7 @@ jobs:
           cp package.json README.md LICENSE lib/
 
       - run: |
-          sed -i 's/@sahin52\/hugerte-paste-from-word-plugin/@sahin52\/hugerte-paste-from-word-lib/' lib/package.json
+          sed -i 's/hugerte-paste-from-word-plugin/hugerte-paste-from-word-lib/' lib/package.json
 
       - uses: JS-DevTools/npm-publish@v3
         with:
