@@ -1,11 +1,11 @@
 /**
- * Copyright (c) Tiny Technologies, Inc. and Pangaea Information Technologies, Ltd.
+ * Copyright (c) Tiny Technologies, Inc., Pangaea Information Technologies, Ltd. and skasap
  * All rights reserved.
  * Licensed under the LGPL or a commercial license.
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  */
-import tinymce from "tinymce";
+import hugerte from "hugerte";
 
 type RegExpFilter =
   | RegExp
@@ -15,7 +15,7 @@ type RegExpFilter =
 const isRegExp = (val: unknown): val is RegExp => val.constructor === RegExp;
 
 export function filter(content: string, items: RegExpFilter[]): string {
-  tinymce.util.Tools.each(items, (v) => {
+  hugerte.util.Tools.each(items, (v) => {
     if (isRegExp(v)) {
       content = content.replace(v, "");
     } else {

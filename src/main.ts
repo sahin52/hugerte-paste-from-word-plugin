@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Tiny Technologies, Inc. and Pangaea Information Technologies, Ltd.
+ * Copyright (c) Tiny Technologies, Inc., Pangaea Information Technologies, Ltd. and skasap
  * All rights reserved.
  * Licensed under the LGPL or a commercial license.
  * For LGPL see License.txt in the project root for license information.

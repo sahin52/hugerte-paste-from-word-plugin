@@ -1,24 +1,24 @@
 {
-  "name": "@pangaeatech/tinymce-paste-from-word-plugin",
+  "name": "hugerte-paste-from-word-plugin",
   "version": "1.0.0",
-  "description": "TinyMCE 6.x Plugin to add support for pasting from Microsoft Word documents",
-  "author": "Pangaea Information Technologies, Ltd.",
+  "description": "HugeRTE 1.x Plugin to add support for pasting from Microsoft Word documents",
+  "author": "Pangaea Information Technologies, Ltd. & skasap",
   "license": "LGPL-2.1",
   "main": "index.js",
-  "homepage": "https://pangaeatech.github.io/tinymce-paste-from-word-plugin/",
+  "homepage": "https://github.com/sahin52/hugerte-paste-from-word-plugin/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pangaeatech/tinymce-paste-from-word-plugin"
+    "url": "https://github.com/sahin52/hugerte-paste-from-word-plugin"
   },
   "keywords": [
-    "tinymce",
+    "hugerte",
     "Microsoft",
     "Word",
     "paste",
     "plugin"
   ],
   "bugs": {
-    "url": "https://github.com/pangaeatech/tinymce-paste-from-word-plugin/issues"
+    "url": "https://github.com/sahin52/hugerte-paste-from-word-plugin/issues"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -34,7 +34,7 @@
     "format:fix": "prettier --write ."
   },
   "peerDependencies": {
-    "tinymce": "6.8.5"
+    "hugerte": "1.0.11"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
@@ -43,7 +43,6 @@
     "@jest/globals": "29.7.0",
     "@types/jest": "29.5.12",
     "@types/node": "20.16.1",
-    "@types/tinymce": "4.6.9",
     "@typescript-eslint/eslint-plugin": "8.2.0",
     "@typescript-eslint/parser": "8.2.0",
     "eslint": "8.57.0",

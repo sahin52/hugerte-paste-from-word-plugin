@@ -2,16 +2,16 @@ import { test, expect } from "@jest/globals";
 
 window.matchMedia = () => ({ parseStyle: () => "" }) as any;
 global.CSS = { escape: (s) => s } as any;
-import tinymce from "tinymce";
+import hugerte from "hugerte";
 
 import { preProcess } from "../WordFilter";
 import * as Strings from "../__mocks__/Strings";
 
 test("TBA: Paste Word fake list", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(preProcess(editor, Strings.wordList2)).toEqual(
@@ -36,10 +36,10 @@ test("TBA: Paste Word fake list", () => {
 });
 
 test("TBA: Paste Word fake list of ten items with roman numerals", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -131,10 +131,10 @@ test("TBA: Paste Word fake list of ten items with roman numerals", () => {
 });
 
 test("TBA: Paste Word fake list before BR", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p,-br" },
-    tinymce,
+    hugerte,
   );
 
   expect(preProcess(editor, Strings.wordList1 + "<p><br />a</p>")).toEqual(
@@ -143,10 +143,10 @@ test("TBA: Paste Word fake list before BR", () => {
 });
 
 test("TBA: Paste Word fake lists interrupted by header", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p,-h1" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -160,10 +160,10 @@ test("TBA: Paste Word fake lists interrupted by header", () => {
 });
 
 test("TBA: Paste list like paragraph and list", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -175,13 +175,13 @@ test("TBA: Paste list like paragraph and list", () => {
 });
 
 test("TBA: Paste list like paragraph and list (disabled)", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     {
       pastefromword_convert_fake_lists: false,
       pastefromword_valid_elements: "-ul,-ol,-li,-p",
     },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -195,7 +195,7 @@ test("TBA: Paste list like paragraph and list (disabled)", () => {
 });
 
 test("TBA: Paste Word table", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   expect(preProcess(editor, Strings.table)).toEqual(
     '<table style="margin-left: 36pt; border-collapse: collapse;"><tbody><tr><td width="307" style="border: 1pt solid black; padding: 0cm 5.4pt; width: 230.3pt;"><p style="margin: 0cm 0cm 0.0001pt; line-height: normal;">Cell 1</p></td><td width="307" style="border-style: solid solid solid none; border-color: black black black -moz-use-text-color; border-width: 1pt 1pt 1pt medium; padding: 0cm 5.4pt; width: 230.3pt;"><p style="margin: 0cm 0cm 0.0001pt; line-height: normal;">Cell 2</p></td></tr><tr><td width="307" style="border-style: none solid solid; border-color: -moz-use-text-color black black; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 230.3pt;"><p style="margin: 0cm 0cm 0.0001pt; line-height: normal;">Cell 3</p></td><td width="307" style="border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 230.3pt;"><p style="margin: 0cm 0cm 0.0001pt; line-height: normal;">Cell 4</p></td></tr></tbody></table><p> </p>',
@@ -203,10 +203,10 @@ test("TBA: Paste Word table", () => {
 });
 
 test("TBA: Paste Office 365", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p,-div" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -218,10 +218,10 @@ test("TBA: Paste Office 365", () => {
 });
 
 test("TBA: Paste Google Docs 1", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -239,10 +239,10 @@ test("TBA: Paste Google Docs 1", () => {
 });
 
 test("TBA: Paste Word without mso markings", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -258,7 +258,7 @@ test("TBA: Paste Word without mso markings", () => {
 });
 
 test("TBA: Paste Word links", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   expect(
     preProcess(
@@ -272,9 +272,9 @@ test("TBA: Paste Word links", () => {
         '<a href="#_ftnref238571849" name="_ftn238571849">[5]</a>' +
         '<a href="#_edn238571849" name="_ednref238571849">[6]</a>' +
         '<a href="#_ednref238571849" name="_edn238571849">[7]</a>' +
-        '<a href="http://domain.tinymce.com/someurl">8</a>' +
+        '<a href="http://domain.hugerte.com/someurl">8</a>' +
         '<a name="#unknown">9</a>' +
-        '<a href="http://domain.tinymce.com/someurl" name="named_link">named_link</a>' +
+        '<a href="http://domain.hugerte.com/someurl" name="named_link">named_link</a>' +
         "<a>5</a>" +
         "</p>",
     ),
@@ -288,7 +288,7 @@ test("TBA: Paste Word links", () => {
       '<a href="#_ftnref238571849" name="_ftn238571849">[5]</a>' +
       '<a href="#_edn238571849" name="_ednref238571849">[6]</a>' +
       '<a href="#_ednref238571849" name="_edn238571849">[7]</a>' +
-      '<a href="http://domain.tinymce.com/someurl">8</a>' +
+      '<a href="http://domain.hugerte.com/someurl">8</a>' +
       "9" +
       "named_link" +
       "5" +
@@ -297,7 +297,7 @@ test("TBA: Paste Word links", () => {
 });
 
 test("TBA: Paste Word retain styles", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   // Test color
   expect(
@@ -314,7 +314,7 @@ test("TBA: Paste Word retain styles", () => {
 });
 
 test("TBA: Paste Word retain bold/italic styles to elements", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   expect(
     preProcess(
@@ -332,7 +332,7 @@ test("TBA: Paste Word retain bold/italic styles to elements", () => {
 });
 
 test("TBA: paste track changes comment", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   expect(
     preProcess(
@@ -346,10 +346,10 @@ test("TBA: paste track changes comment", () => {
 });
 
 test("TBA: paste nested (UL) word list", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -382,10 +382,10 @@ test("TBA: paste nested (UL) word list", () => {
 });
 
 test("TBA: paste nested (OL) word list", () => {
-  const editor = new tinymce.Editor(
+  const editor = new hugerte.Editor(
     "id",
     { pastefromword_valid_elements: "-ul,-ol,-li,-p" },
-    tinymce,
+    hugerte,
   );
 
   expect(
@@ -422,7 +422,7 @@ test("TBA: paste nested (OL) word list", () => {
 });
 
 test("TBA: Paste word DIV as P", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   expect(preProcess(editor, '<p class="MsoNormal">1</p><div>2</div>')).toEqual(
     "<p>1</p><p>2</p>",
@@ -430,7 +430,7 @@ test("TBA: Paste word DIV as P", () => {
 });
 
 test("TBA: paste nested lists", () => {
-  const editor = new tinymce.Editor("id", {}, tinymce);
+  const editor = new hugerte.Editor("id", {}, hugerte);
 
   expect(
     preProcess(
