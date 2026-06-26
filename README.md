@@ -2,7 +2,9 @@
 
 This plugin adds the open-source Paste from Word functionality from the 5.x branch of TinyMCE as a plugin for HugeRTE 1.x.
 The goal of this project is not to replace the premium PowerPaste plugin, but to provide a free, open-source alternative for users who need basic Paste from Word support in HugeRTE.
+
 ## Background
+
 The Paste from Word feature was bundled by default in TinyMCE 5.x. When TinyMCE 6.x launched, it was extracted into a separate plugin: @pangaeatech/tinymce-paste-from-word-plugin. After TinyMCE moved to a commercial-only licensing model, HugeRTE emerged as the open-source community fork, but without an equivalent Paste from Word package.
 This plugin fills that gap. Forked from @pangaeatech/tinymce-paste-from-word-plugin and adapted for HugeRTE 1.x, it also updates dependencies to address known vulnerabilities.
 
@@ -26,10 +28,7 @@ This plugin fills that gap. Forked from @pangaeatech/tinymce-paste-from-word-plu
 1. Tell your HugeRTE instance where to load the plugin from and how to configure it:
 
 ```js
-hugerte.PluginManager.load(
-  "paste_from_word",
-  TODO
-);
+hugerte.PluginManager.load("paste_from_word", TODO);
 hugerte.init({
   selector: "textarea", // change this value according to your HTML
   plugins: "paste_from_word",
